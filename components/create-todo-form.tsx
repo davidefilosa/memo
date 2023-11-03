@@ -1,7 +1,8 @@
 "use client";
 
 import * as z from "zod";
-import { useForm, Resolver } from "react-hook-form";
+import { useToast } from "@/components/ui/use-toast";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -29,6 +30,8 @@ const formSchema = z.object({
 });
 
 const CreateTodoForm = () => {
+  const { toast } = useToast();
+
   const [createTodo, uploadImage, imageUrl, clearImageUrl] = useBoardStore(
     (state) => [
       state.createTodo,
@@ -162,6 +165,11 @@ const CreateTodoForm = () => {
                     className="hidden"
                     value={field.value}
                     onChange={(e) => {
+                      if (!e.target.files![0].type.startsWith("image/"))
+                        return toast({
+                          title: "You can upload only image file!",
+                          variant: "destructive",
+                        });
                       uploadImage(e.target.files![0]);
                     }}
                   />

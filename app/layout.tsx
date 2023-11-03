@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ModalProvider from "@/components/modal-provider";
 import { Analytics } from "@vercel/analytics/react";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,8 @@ export default function RootLayout({
     <html lang="en">
       <ModalProvider />
       <body className="bg-[#F5F6F8]">
-        {children} <Analytics />
+        {children} <Toaster />
+        <Analytics />
       </body>
     </html>
   );
