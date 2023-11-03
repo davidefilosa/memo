@@ -4,7 +4,7 @@ import CreateTodoForm from "./create-todo-form";
 import { Dialog, DialogContent, DialogHeader } from "./ui/dialog";
 import useModalStore from "@/store/modal-store";
 
-const createTodoModal = () => {
+const CreateTodoModal = () => {
   const modalStore = useModalStore();
 
   return (
@@ -19,4 +19,4 @@ const createTodoModal = () => {
   );
 };
 
-export default createTodoModal;
+export default CreateTodoModal;
