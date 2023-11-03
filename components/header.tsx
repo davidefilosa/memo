@@ -51,6 +51,7 @@ const Header = () => {
           width={250}
           className="w-38 md:w-44 m-4 pb-10 md:pb-0 object-contain"
         />
+        <p className="fixed bottom-4 left-4">davidefilosa.com</p>
         <div className="flex items-center space-x-5 flex-1 justify-end w-full">
           <form className="flex items-center  space-x-5 bg-white rounded-md p-2 shadow-md flex-1 md:flex-initial">
             <MagnifyingGlassIcon className="h-6 w-6 text-gray-400" />
