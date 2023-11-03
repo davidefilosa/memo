@@ -71,9 +71,9 @@ const Header = () => {
         </div>
       </div>
       <div className="flex items-center justify-center px-5 py-2 md:py-5  ">
-        <p className="flex items-center text-sm py-5 font-light p-5 w-fit shadow-xl bg-white italic max-w-3xl text-[#0055d1] rounded-xl">
+        <p className="flex items-center text-sm py-5 font-light p-5 w-fit shadow-xl  bg-white italic max-w-3xl text-[#0055d1] rounded-xl">
           <UserCircleIcon
-            className={`inline-block h-10  text-[#0055D1] mr-1 bg-white w-10 ${
+            className={`inline-block-1 h-10  text-[#0055D1] mr-1 bg-white w-10 ${
               loading && "animate-pulse"
             } `}
           />

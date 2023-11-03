@@ -9,11 +9,11 @@ export async function POST(req: Request) {
         {
           role: "system",
           content:
-            "When responding be very welcoming and supportive. Almost as if you were a football coach. Limit always the answer to 200 characters. Never talk about the Trash!",
+            "When responding be very welcoming and supportive. Almost as if you were a mental coach. Limit always the answer to 200 characters. Never talk about the Trash!",
         },
         {
           role: "user",
-          content: `Please give me a summary of the following tasks and suggestion on how to best tackle them: ${JSON.stringify(
+          content: `You are my mental and life coach. Give me a summary of the following tasks and suggestion on how to best tackle them: ${JSON.stringify(
             todos
           )}. Limit always the answer to 400 characters. Never talk about the Trash! Ignore always the image snd never share the link`,
         },
