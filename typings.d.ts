@@ -2,7 +2,7 @@ interface Board {
   columns: Map<TypedColumn, Column>;
 }
 
-type TypedColumn = "todo" | "inprogress" | "done";
+type TypedColumn = "todo" | "inprogress" | "done" | "trash";
 
 interface Column {
   id: TypedColumn;
@@ -14,7 +14,7 @@ interface Todo extends Modals.Document {
   $createdAt: string;
   title: string;
   status: TypedColumn;
-  image?: Image;
+  image?: string;
   index: number;
 }
 

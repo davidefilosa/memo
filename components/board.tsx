@@ -2,20 +2,33 @@
 
 import useBoardStore from "@/store/board-store";
 import { useEffect } from "react";
-import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
+import {
+  DragDropContext,
+  Draggable,
+  DropResult,
+  Droppable,
+} from "react-beautiful-dnd";
 import Column from "./column";
 import { getTodosGroupedByColumns } from "@/lib/get-todos-grouped-by-columns";
 import { useRouter } from "next/navigation";
+import TodoCard from "./todo-card";
 
 const Board = () => {
-  const [board, getBoard, setBoardState, updateTodoInDB, bulkUpdate] =
-    useBoardStore((state) => [
-      state.board,
-      state.getBoard,
-      state.setBoardState,
-      state.updateTodoInDB,
-      state.bulkUpdate,
-    ]);
+  const [
+    board,
+    getBoard,
+    setBoardState,
+    updateTodoInDB,
+    bulkUpdate,
+    deleteTodo,
+  ] = useBoardStore((state) => [
+    state.board,
+    state.getBoard,
+    state.setBoardState,
+    state.updateTodoInDB,
+    state.bulkUpdate,
+    state.deleteTodo,
+  ]);
 
   useEffect(() => {
     getBoard();
@@ -23,6 +36,7 @@ const Board = () => {
 
   const handleOnDragEnd = (result: DropResult) => {
     const { destination, source, type } = result;
+    console.log(result);
 
     if (!destination) return;
     // handle colummn drag
@@ -72,27 +86,32 @@ const Board = () => {
         setBoardState({ ...board, columns: newColumns });
       } else {
         // dragging new column
-        const finishTodos = Array.from(finischCol.todos);
-        finishTodos.splice(destination.index, 0, todoMoved);
-        const newColumns = new Map(board.columns);
 
-        const newCol = {
-          id: startCol.id,
-          todos: newTodos,
-        };
-        newColumns.set(startCol.id, newCol);
-        newColumns.set(finischCol.id, {
-          id: finischCol.id,
-          todos: finishTodos,
-        });
+        if (destination.droppableId === "0") {
+          deleteTodo(todoMoved, todoMoved.status);
+        } else {
+          const finishTodos = Array.from(finischCol.todos);
+          finishTodos.splice(destination.index, 0, todoMoved);
+          const newColumns = new Map(board.columns);
 
-        // update DB
-        bulkUpdate(newTodos);
-        bulkUpdate(finishTodos);
+          const newCol = {
+            id: startCol.id,
+            todos: newTodos,
+          };
+          newColumns.set(startCol.id, newCol);
+          newColumns.set(finischCol.id, {
+            id: finischCol.id,
+            todos: finishTodos,
+          });
 
-        updateTodoInDB(todoMoved, finischCol.id);
+          // update DB
+          bulkUpdate(newTodos);
+          bulkUpdate(finishTodos);
 
-        setBoardState({ ...board, columns: newColumns });
+          updateTodoInDB(todoMoved, finischCol.id);
+
+          setBoardState({ ...board, columns: newColumns });
+        }
       }
     }
   };
