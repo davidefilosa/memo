@@ -9,11 +9,11 @@ export async function POST(req: Request) {
         {
           role: "system",
           content:
-            "When responding you suggest me new task. Almost as if you were a mental coach. Limit always the answer to 50 characters. Never talk about the Trash!",
+            "When responding you suggest me new task, be original. Almost as if you were a mental coach. Limit always the answer to 50 characters. Never talk about the Trash!",
         },
         {
           role: "user",
-          content: `You are my mental and life coach, Suggest a new task based on the following tasks ans some tips to tackle it: ${JSON.stringify(
+          content: `You are my mental and life coach, Suggest a new task based on the following tasks but be original and some tips to tackle it: ${JSON.stringify(
             todos
           )}. Limit always the answer to 50 characters. Never talk about the Trash! Ignore always the image and never share the link. Start the answer with "what about"`,
         },
