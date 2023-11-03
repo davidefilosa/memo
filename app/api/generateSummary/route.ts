@@ -13,7 +13,7 @@ export async function POST(req: Request) {
         },
         {
           role: "user",
-          content: `You are my mental and life coach. Give me a summary of the following tasks and suggestion on how to best tackle them: ${JSON.stringify(
+          content: `You are my mental and life coach, do not say this back to me. Give me a summary of the following tasks and suggestion on how to best tackle them: ${JSON.stringify(
             todos
           )}. Limit always the answer to 400 characters. Never talk about the Trash! Ignore always the image snd never share the link`,
         },
