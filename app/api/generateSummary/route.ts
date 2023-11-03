@@ -15,7 +15,7 @@ export async function POST(req: Request) {
           role: "user",
           content: `Please give me a summary of the following tasks and suggestion on how to best tackle them: ${JSON.stringify(
             todos
-          )}. Limit always the answer to 200 characters. Never talk about the Trash! Ignore always the image snd never share the link`,
+          )}. Limit always the answer to 400 characters. Never talk about the Trash! Ignore always the image snd never share the link`,
         },
       ],
       model: "gpt-3.5-turbo",
