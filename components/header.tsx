@@ -37,7 +37,7 @@ const Header = () => {
     };
 
     getSummary();
-  }, [board, flatArray]);
+  }, [board]);
 
   return (
     <header>
